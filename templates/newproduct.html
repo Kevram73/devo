@@ -1,0 +1,63 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="pagetitle">
+      <h1>Nouveau produit</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+          <li class="breadcrumb-item active">Ajouter un nouveau produit</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+<section class="section dashboard">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ajoutez un nouveau produit</h5>
+
+              <!-- Vertical Form -->
+              <form class="row g-3" method="POST">
+                <div class="col-12">
+                  <label for="nom" class="form-label">Entrez le nom du produit</label>
+                  <input type="text" class="form-control" id="nom" name="nom">
+                </div>
+                <div class="col-6">
+                  <label for="description" class="form-label">Ajoutez une description</label>
+                  <input type="text" class="form-control" id="description" name="description">
+                </div>
+                  <div class="col-6">
+                  <label for="quantitestock" class="form-label">Quantié à ajouter</label>
+                  <input type="number" class="form-control" id="quantitestock" name="quantitestock">
+                </div>
+                <div class="col-6">
+                  <label for="prixU" class="form-label">Entrez le prix unitaire</label>
+                  <input type="number" class="form-control" id="prixU" name="prixU">
+                </div>
+                  <div class="col-6">
+                  <label for="categorie" class="form-label">Sélectionnez une catégorie</label>
+                  <div class="col-sm-12">
+                    <select class="form-select" aria-label="Default select example" id="categorie" name="categorie">
+                      <option selected>Sélectionnez...</option>
+                        {% for category in categories %}
+                            <option value="{{ category['id'] }}">{{ category['libelle'] }}</option>
+                        {%endfor%}
+                    </select>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <button type="submit" class="btn btn-primary">Valider</button>
+                  <button type="reset" class="btn btn-secondary">Annuler</button>
+                </div>
+              </form><!-- Vertical Form -->
+
+            </div>
+          </div>
+          </div>
+      </div>
+    </section>
+
+
+{%endblock%}

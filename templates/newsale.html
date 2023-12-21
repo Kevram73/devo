@@ -1,0 +1,110 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="pagetitle">
+      <h1>Nouvelle vente</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+          <li class="breadcrumb-item active">Ajouter une nouvelle vente</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+<section class="section dashboard">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Créez une nouvelle vente</h5>
+
+              <!-- Vertical Form -->
+              <form class="row g-3" method="POST">
+                <div class="col-12">
+                  <label for="datevente" class="form-label">Entrez la date</label>
+                  <input type="date" class="form-control" id="datevente" name="datevente">
+                </div>
+                <div class="col-6">
+                  <label for="produit" class="form-label">Sélectionnez le produit à vendre</label>
+                  <select class="form-select" id="produit" name="produit">
+                      <option selected>Sélectionnez...</option>
+                        {% for product in products %}
+                            <option value="{{ product['id'] }}" data-prix="{{ product['prix'] }}">{{ product['nom'] }}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="col-6">
+                  <label for="prixu" class="form-label">Entrez le prix</label>
+                  <input type="number" class="form-control" id="prixu" name="prixu" readonly>
+                </div>
+                <div class="col-6">
+                  <label for="quantite" class="form-label">Quantité à vendre</label>
+                  <input type="number" class="form-control" id="quantite" name="quantite">
+                </div>
+                <div class="col-6">
+                  <label for="montantotal" class="form-label">Montant total</label>
+                  <input type="text" class="form-control" id="montantotal" name="montantotal" readonly>
+                </div>
+                  <div class="col-6">
+                  <label for="employe" class="form-label">Sélectionnez l'employé</label>
+                      <select class="form-select" id="employe" name="employe">
+                      <option selected>Sélectionnez...</option>
+                        {% for employe in employes %}
+                            <option value="{{ employe['id'] }}">{{ employe['nom'] }} {{ employe['prenom'] }}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="col-6">
+                  <label for="client" class="form-label">Sélectionnez le client</label>
+                  <select class="form-select" id="client" name="client">
+                      <option selected>Sélectionnez...</option>
+                        {% for client in clients %}
+                            <option value="{{ client['id'] }}">{{ client['nom'] }} {{ client['prenom'] }}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="text-end">
+                  <button type="submit" class="btn btn-primary">Valider</button>
+                  <button type="reset" class="btn btn-secondary">Annuler</button>
+                </div>
+              </form><!-- Vertical Form -->
+
+            </div>
+          </div>
+          </div>
+      </div>
+    </section>
+
+<script>
+    var firstProduct = document.querySelector('#produit option:not([value=""])');
+
+    var prixuInput = document.getElementById('prixu');
+    prixuInput.value = firstProduct ? firstProduct.getAttribute('data-prix') : '';
+
+    document.getElementById('produit').addEventListener('change', function() {
+        var selectedProduct = this.options[this.selectedIndex];
+        prixuInput.value = selectedProduct ? selectedProduct.getAttribute('data-prix') : '';
+    });
+</script>
+
+<script>
+    var prixuInput = document.getElementById('prixu');
+    var quantiteInput = document.getElementById('quantite');
+    var montantotalInput = document.getElementById('montantotal');
+
+    prixuInput.addEventListener('input', updateMontantTotal);
+    quantiteInput.addEventListener('input', updateMontantTotal);
+
+    function updateMontantTotal() {
+        var prixuValue = parseInt(prixuInput.value) || 0;
+        var quantiteValue = parseInt(quantiteInput.value) || 0;
+
+        var montantotalValue = prixuValue * quantiteValue;
+
+        montantotalInput.value = montantotalValue.toFixed(2);
+    }
+</script>
+
+
+
+{%endblock%}

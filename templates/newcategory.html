@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="pagetitle">
+      <h1>Nouvelle catégorie</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+          <li class="breadcrumb-item active">Ajouter une nouvelle catégorie</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+<section class="section dashboard">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Créez une nouvelle catégorie</h5>
+
+              <!-- Vertical Form -->
+              <form class="row g-3" method="POST">
+                <div class="col-12">
+                  <label for="libelle" class="form-label">Libellé de la catégorie</label>
+                  <input type="text" class="form-control" id="libelle" name="libelle">
+                </div>
+                <div class="col-12">
+                  <label for="description" class="form-label">Ajoutez une description</label>
+                  <input type="text" class="form-control" id="description" name="description">
+                </div>
+                <div class="text-end">
+                  <button type="submit" class="btn btn-primary">Valider</button>
+                  <button type="reset" class="btn btn-secondary">Annuler</button>
+                </div>
+              </form><!-- Vertical Form -->
+
+            </div>
+          </div>
+          </div>
+      </div>
+    </section>
+
+
+{%endblock%}

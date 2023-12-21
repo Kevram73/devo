@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="pagetitle">
+      <h1>Liste des employés</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+          <li class="breadcrumb-item active">Liste des employés</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+<section class="section dashboard">
+      <div class="row">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nos employés</h5>
+              <!-- Bordered Table -->
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Numéro</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénoms</th>
+                    <th scope="col">Adresse</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for employe in employes %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ employe['nom'] }}</td>
+                            <td>{{ employe['prenom'] }}</td>
+                            <td>{{ employe['adresse'] }}</td>
+                        </tr>
+                    {%endfor%}
+                </tbody>
+              </table>
+              <!-- End Bordered Table -->
+            </div>
+          </div>
+      </div>
+    </section>
+
+
+{%endblock%}

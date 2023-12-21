@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="pagetitle">
+      <h1>Liste des ventes</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+          <li class="breadcrumb-item active">Liste des ventes</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+<section class="section dashboard">
+      <div class="row">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ventes réalisées</h5>
+              <!-- Bordered Table -->
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Vente n°</th>
+                    <th scope="col">Date de la vente</th>
+                    <th scope="col">Produit</th>
+                      <th scope="col">Quantité vendue</th>
+                      <th scope="col">Client</th>
+                      <th scope="col">Employe</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for sale in sales %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ sale['datevente'] }}</td>
+                            <td>{{ sale['produit'] }}</td>
+                            <td>{{ sale['quantiteVendue'] }}</td>
+                            <td>{{ sale['client'] }}</td>
+                            <td>{{ sale['employe'] }}</td>
+                        </tr>
+                    {%endfor%}
+                </tbody>
+              </table>
+              <!-- End Bordered Table -->
+            </div>
+          </div>
+      </div>
+    </section>
+
+
+{%endblock%}

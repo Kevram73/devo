@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="pagetitle">
+      <h1>Liste des produits</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+          <li class="breadcrumb-item active">Liste des produits</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+<section class="section dashboard">
+      <div class="row">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Liste des produits</h5>
+              <!-- Bordered Table -->
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Numéro</th>
+                    <th scope="col">Nom du produit</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Prix Unitaire (FCFA)</th>
+                    <th scope="col">Quantité initiale en stock</th>
+                    <th scope="col">Quantité restante</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ product['nom'] }}</td>
+                            <td>{{ product['description'] }}</td>
+                            <td>{{ product['category'] }}</td>
+                            <td>{{ product['prixunitaire'] }}</td>
+                            <td>{{ product['quantitestock'] }}</td>
+                            <td></td>
+                        </tr>
+                    {%endfor%}
+                </tbody>
+              </table>
+              <!-- End Bordered Table -->
+            </div>
+          </div>
+      </div>
+</section>
+
+
+{%endblock%}

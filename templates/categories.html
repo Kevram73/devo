@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="pagetitle">
+      <h1>Liste des catégories</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+          <li class="breadcrumb-item active">Liste des catégories</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+<section class="section dashboard">
+      <div class="row">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Catégories de produits</h5>
+              <!-- Bordered Table -->
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Numéro</th>
+                    <th scope="col">Libellé de la catégorie</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ category['libelle'] }}</td>
+                            <td>{{ category['description'] }}</td>
+                        </tr>
+                    {%endfor%}
+                </tbody>
+              </table>
+              <!-- End Bordered Table -->
+            </div>
+          </div>
+      </div>
+    </section>
+
+
+{%endblock%}
